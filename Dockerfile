@@ -1,0 +1,1 @@
+FROM registry.gitlab.com/commento/commento:v1.8.0
