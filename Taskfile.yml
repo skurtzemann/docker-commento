@@ -1,0 +1,22 @@
+version: "3"
+
+vars:
+  CONTAINER_NAMESPACE: skurtzemann/commento
+  CONTAINER_TAG: v1.8.0
+  CONTAINER_NAME: "{{.CONTAINER_NAMESPACE}}:{{.CONTAINER_TAG}}"
+
+tasks:
+  build:
+    desc: Build container locally
+    cmds: 
+      - docker build -t {{.CONTAINER_NAME}} .
+  
+  push:
+    desc: Push container image
+    cmds: 
+      - docker push {{.CONTAINER_NAME}}
+
+  scan:
+    desc: Scan built container image with trivy
+    cmds:
+      - trivy --skip-update {{.CONTAINER_NAME}}
